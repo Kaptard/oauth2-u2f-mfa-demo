@@ -1,0 +1,153 @@
+@import './partials/importer';
+
+ /**
+ * Main content wrapper
+ */
+.container {
+  max-width: $max-width;
+  padding: 0 96px;
+  margin: auto;
+
+  @media(max-width: $breakpoint-m) {
+    padding: 0 96px;
+  }
+  @media(max-width: $breakpoint-s) {
+    padding: 0 24px;
+  }
+}
+
+/**
+ * Sections
+ */
+section {
+  padding: 60px 0;
+  border-bottom: 1px solid rgba(62,67,72,.4);
+  width: 100%;
+
+  &:first-of-type {
+    margin-top: 10px;
+  }
+  &:last-of-type {
+    border-bottom: none;
+    margin-bottom: 40px;
+  }
+}
+
+/**
+ * Rows
+ */
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.row-margin {
+  @extend .row;
+  margin: -10px;
+
+  & > * {
+    margin: 10px;
+  }
+}
+
+.row-reverse {
+  @extend .row;
+  flex-direction: row-reverse;
+}
+
+/**
+ * Columns
+ */
+@mixin column($size) {
+  flex-grow: $size;
+  flex-basis: percentage(0.01 * $size);
+}
+// .col-1, .col-2...
+@for $i from 0 through 4 {
+  .col-#{$i},
+  .col-b-#{$i} {
+    @include column($i);
+  }
+}
+
+.col,
+.col-b {
+  @include column(1);
+}
+
+// Square columns
+.col-sq {
+  overflow: hidden;
+  text-align: center;
+}
+
+.col-sq::before {
+  position: relative;
+  content: '';
+  float: left;
+  padding-top: 100%;
+}
+
+.col-sq-bx {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+/**
+* Media Queries
+*/
+@media (max-width: $breakpoint-m) {
+  .container {
+    padding: 0 35px;
+  }
+
+  .row, .row-margin, .row-pad {
+    flex-wrap: wrap;
+  }
+
+  .row-margin {
+    margin: 0;
+  }
+
+  .row-margin > *[class*="col-b"] {
+    margin: 10px;
+    flex-basis: calc(50% - 50px);
+  }
+
+  .row-margin > *[class*="col-b"], .row > *[class*="col-b"] {
+    &:nth-child(even) {
+      margin-right: 0;
+    }
+
+    &:nth-child(odd) {
+      margin-left: 0;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-s) {
+  .row > *[class*="col-b"] {
+    flex-basis: 100%;
+    margin: 0;
+  }
+
+  .row-margin > *[class*="col-b"] {
+    margin: 10px 0;
+    flex-basis: 100%;
+    padding-right: 0;
+    padding-left: 0;
+
+    &:nth-child(even) {
+      margin-right: 0;
+    }
+  }
+}
+@media (max-width: $breakpoint-xs) {
+  .container {
+    padding: 0 20px;
+  }
+}
