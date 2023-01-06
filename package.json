@@ -15,7 +15,7 @@
     "cubic-auth": "^3.2.3",
     "cubic-client": "^3.2.2",
     "cubic-defaults": "^2.0.7",
-    "cubic-ui": "^3.5.3",
+    "cubic-ui": "^3.7.1",
     "googleapis": "^47.0.0",
     "u2f": "^0.1.3",
     "u2f-api-polyfill": "^0.4.4"
